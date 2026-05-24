@@ -1,0 +1,57 @@
+(/* Global page background to match the screenshot */)
+body {
+	background: #f6f7f8;
+}
+
+/* Make the contacts list look like a single white panel with separators */
+.list-group {
+	background: #fff;
+	border: 1px solid #e9ecef;
+	border-radius: 6px;
+	padding: 8px;
+}
+
+.list-group .card {
+	background: transparent;
+	border: none;
+	border-bottom: 1px solid #e9ecef;
+	margin-bottom: 0;
+	padding: 12px 8px;
+}
+
+.list-group .card:last-child {
+	border-bottom: none;
+}
+
+/* Avatar styling */
+.card img.rounded-circle {
+	width: 96px;
+	height: 96px;
+	object-fit: cover;
+	border-radius: 50%;
+	display: block;
+}
+
+/* Text styles inside each card */
+.card h5 {
+	margin-bottom: 6px;
+	font-size: 1.25rem;
+}
+.card p {
+	margin-bottom: 4px;
+}
+
+/* Action buttons on the right */
+.card .btn.btn-link {
+	font-size: 18px;
+	color: #333;
+}
+.card .btn.btn-link.text-danger {
+	color: #c82333;
+}
+
+/* Small spacing tweaks for icons */
+.fa-map-marker-alt, .fa-phone, .fa-envelope {
+	width: 18px;
+}
+

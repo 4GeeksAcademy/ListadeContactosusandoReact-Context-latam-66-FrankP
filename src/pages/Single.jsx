@@ -1,27 +1,29 @@
-// Import necessary hooks and components from react-router-dom and other libraries.
-import { Link, useParams } from "react-router-dom";  // To use link for navigation and useParams to get URL parameters
-import PropTypes from "prop-types";  // To define prop types for this component
-import rigoImageUrl from "../assets/img/rigo-baby.jpg"  // Import an image asset
-import useGlobalReducer from "../hooks/useGlobalReducer";  // Import a custom hook for accessing the global state
+// Import necessary hooks and components
+import React, { useContext } from "react";
+import { Link, useParams } from "react-router-dom"; 
+import PropTypes from "prop-types"; 
+import { Context } from "../AppContext";
 
-// Define and export the Single component which displays individual item details.
+
+// Define the Single component
 export const Single = props => {
-  // Access the global state using the custom hook.
-  const { store } = useGlobalReducer()
+  // Acceso al estado global mediante el hook
+  const { store } = useContext(Context);
 
-  // Retrieve the 'theId' URL parameter using useParams hook.
-  const { theId } = useParams()
-  const singleTodo = store.todos.find(todo => todo.id === parseInt(theId));
+  // Obtener el ID de la URL
+  const { theId } = useParams();
+  
+  // Buscamos el contacto o tarea específico
+  // Aseguramos que 'store.contacts' o 'store.todos' exista dependiendo de lo que estés usando
+  const item = store.contacts ? store.contacts.find(item => item.id === parseInt(theId)) : null;
 
   return (
     <div className="container text-center">
-      {/* Display the title of the todo element dynamically retrieved from the store using theId. */}
-      <h1 className="display-4">Todo: {singleTodo?.title}</h1>
-      <hr className="my-4" />  {/* A horizontal rule for visual separation. */}
+      <h1 className="display-4">Detalle: {item?.name || item?.title || "Cargando..."}</h1>
+      <hr className="my-4" /> 
 
-      {/* A Link component acts as an anchor tag but is used for client-side routing to prevent page reloads. */}
       <Link to="/">
-        <span className="btn btn-primary btn-lg" href="#" role="button">
+        <span className="btn btn-primary btn-lg" role="button">
           Back home
         </span>
       </Link>
@@ -29,9 +31,7 @@ export const Single = props => {
   );
 };
 
-// Use PropTypes to validate the props passed to this component, ensuring reliable behavior.
+// PropTypes para validación
 Single.propTypes = {
-  // Although 'match' prop is defined here, it is not used in the component.
-  // Consider removing or using it as needed.
   match: PropTypes.object
 };
